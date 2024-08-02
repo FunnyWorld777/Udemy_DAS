@@ -165,20 +165,18 @@ class LinkedList {
         //                                       //
         //                                       //
         ///////////////////////////////////////////
-        bool deleteNode(int index){
-            if(index < 0 || index >= length) return false;
-            if(length == 1 && index == 0){
-                head = nullptr;
-                tail = nullptr;
-            } else{
-                Node* prev = get(index-1);
-                Node* temp = get(index);
-                prev->next = temp->next;
-                delete temp;
-                
-            }
+        void deleteNode(int index){
+            if(index < 0) return;
+            if(index == 0) return deleteFirst();
+            if(index == length-1 ) return deleteLast();
+
+            Node* prev = get(index-1);
+            Node* temp = prev->next;
+
+            prev->next = temp->next;
+            delete temp;
             length--;
-            return true;
+
         }
 };
 
